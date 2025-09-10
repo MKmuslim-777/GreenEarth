@@ -203,62 +203,7 @@ const displayPlantsDetails = (plant) => {
 
 // Add To Cart Button
 
-document.getElementById("card-container").addEventListener("click", (event) => {
-    if(event.target.localName === "button"){
-        const card = event.target.closest(".card");
-        const name = card.querySelector(".card-title").innerText;
-        const price = Number(card.querySelector(".plant-price").innerText)
-        const btnId = event.target.id
-        const cardBtnId = document.getElementById(btnId)
-        const buttonId = btnId.split("-")[btnId.split("-").length-1];
-        
-        
-        fetch(`https://openapi.programming-hero.com/api/plant/${buttonId}`)
-        .then(res => res.json())
-        .then(data => loadDisplayCart(data.plants))
 
-        const loadDisplayCart = (details) => {
-            const cartContainer = document.getElementById("cart-container");
-            
-            alert(`${details.name} has been added to the cart...`)
-            // create Element
-            const createElement = document.createElement("div");
-            createElement.className = "cart"
-
-            createElement.innerHTML = `
-            <div class=" bg-[#F0FDF4] p-4 rounded-xl flex justify-between items-center mt-5 ">
-                <div class="mr-14 ">
-                    <h3 id="cart-title" class="font-semibold text-[16px]">${details.name}</h3>
-                    <p class="text-gray-500 mt-2">৳ 
-                    <span id="cart-price">${details.price}</span>
-                    <span>X</span>
-                    <span>1</span>
-                    </p>
-                </div>
-                <div>
-                    <i id="cart-cancel-${buttonId}" onclick="cancelBtn('${details.id}')" class="text-red-500 fa-solid fa-xmark cart-cancel"></i>
-                </div>
-            </div>
-            `;
-
-            
-            // document.getElementById("cart-price").addEventListener
-            
-            cartContainer.appendChild(createElement);
-            
-            const cartPrice = Number(event.target.closest(".card").querySelector(".plant-price").innerText);
-            const totalPrice = document.getElementById("total-price");
-            const convertTotalPrice = Number(totalPrice.innerText)
-            const availableTotalPrice = cartPrice + convertTotalPrice;
-            // console.log(availableTotalPrice);
-            
-            totalPrice.innerText = availableTotalPrice;
-            
-            
-            
-        };
-    };
-});
 
 
 

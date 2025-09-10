@@ -1,0 +1,9 @@
+*{
+    font-family: "Inter", sans-serif;
+}
+
+
+.unorder_list{
+    list-style: disc;
+    margin-left: 20px;
+}
